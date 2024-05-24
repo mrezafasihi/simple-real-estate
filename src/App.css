@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+   *{
+      direction: rtl;
+   }
+   input{
+    @apply border
+   }
+  }
+  /* .ant-modal-content{
+   direction: rtl;
+  } */
+  
