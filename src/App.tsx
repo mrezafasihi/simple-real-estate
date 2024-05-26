@@ -3,24 +3,28 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Home from "./pages/Home";
-import { EstateContextProvider } from "./context/RealEstateContext";
+import { useCustomeContext } from "./context/RealEstateContext";
 import AdRegistration from "./pages/AdRegistration";
 import Ad from "./pages/Ad";
+import { useEffect } from "react";
 
 function App() {
+  const { theme } = useCustomeContext();
+  useEffect(() => {
+    if (theme === "dark") document.documentElement.classList.add("dark");
+    else document.documentElement.classList.remove("dark");
+  }, [theme]);
   return (
-    <main>
-      <EstateContextProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/Login" element={<Login />} />
-            <Route path="/SignUp" element={<SignUp />} />
-            <Route path="/AdRegistration" element={<AdRegistration />} />
-            <Route path="/ad/:adId" element={<Ad />} />
-          </Routes>
-        </BrowserRouter>
-      </EstateContextProvider>
+    <main className="dark:bg-slate-900 dark:text-gray-100">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/Login" element={<Login />} />
+          <Route path="/SignUp" element={<SignUp />} />
+          <Route path="/AdRegistration" element={<AdRegistration />} />
+          <Route path="/ad/:adId" element={<Ad />} />
+        </Routes>
+      </BrowserRouter>
     </main>
   );
 }

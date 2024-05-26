@@ -2,10 +2,8 @@ import Navbar from "../components/Navbar";
 import ShowList from "../components/ShowList";
 
 function Home() {
- 
-  
   return (
-    <main>
+    <main className="bg-[#f5f5f5] ">
       <Navbar />
       <ShowList />
     </main>
