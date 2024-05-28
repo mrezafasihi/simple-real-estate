@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { ISignUp } from "../types/signUp.types";
 import Navbar from "../components/Navbar";
 import { Navigate, useNavigate } from "react-router-dom";
+import MapLeaflet from "../components/MapLeaflet";
 
 function AdRegistration() {
   const { register, handleSubmit } = useForm<ISignUp>();
@@ -67,10 +68,12 @@ function AdRegistration() {
               className="bg-gray-100 h-8"
             />
           </div>
+          <MapLeaflet />
+
           <input
             type="submit"
             value="تایید"
-            className="w-24 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm   px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 "
+            className="w-36 h-12  text-white mx-auto bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm   px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 "
           />
         </form>
       </div>

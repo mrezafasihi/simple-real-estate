@@ -28,7 +28,10 @@ function ShowList() {
             >
               <Link to={`ad/${item.id}`} className="text-center">
                 <p>{item.title}</p>
-                <p>{item.price}</p>
+                <p>
+                  {item.price}
+                  <span> تومان </span>
+                </p>
               </Link>
             </div>
           );
