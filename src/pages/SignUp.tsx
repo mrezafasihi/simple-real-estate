@@ -3,14 +3,43 @@ import Navbar from "../components/Navbar";
 import { useForm } from "react-hook-form";
 
 function SignUp() {
-  const { register, handleSubmit } = useForm();
+
+  
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (data) => {
+    if (data.rePassword == data.password) {
+      fetch(" http://localhost:3000/users", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      })
+        .then((response) => {
+          console.log(response);
+          if (response.status !== 201) {
+            console.log("first");
+          }
+          return response.json();
+        })
+        .then((json) => console.log(json))
+        .catch((err) => console.log("err"));
+    }
+  };
 
   return (
     <>
+      
+
       <Navbar />
+      {errors ? () => openNotification("top") : ""}
       <div className="flex h-[90vh] bg-indigo-700">
         <div className="w-full max-w-xs m-auto bg-indigo-100 rounded p-5">
-          <form>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div>
               <label className="block mb-2 text-indigo-500" htmlFor="username">
                 نام کاربری
@@ -18,7 +47,7 @@ function SignUp() {
               <input
                 className="w-full p-2 mb-6 text-indigo-700 border-b-2 border-indigo-500 outline-none focus:bg-gray-300"
                 type="text"
-                {...register("username")}
+                {...register("username", { required: true })}
               />
             </div>
             <div>
@@ -28,7 +57,7 @@ function SignUp() {
               <input
                 className="w-full p-2 mb-6 text-indigo-700 border-b-2 border-indigo-500 outline-none focus:bg-gray-300"
                 type="email"
-                {...register("email")}
+                {...register("email", { required: true })}
               />
             </div>
             <div>
@@ -38,17 +67,20 @@ function SignUp() {
               <input
                 className="w-full p-2 mb-6 text-indigo-700 border-b-2 border-indigo-500 outline-none focus:bg-gray-300"
                 type="password"
-                {...register("password")}
+                {...register("password", { required: true })}
               />
             </div>
             <div>
-              <label className="block mb-2 text-indigo-500" htmlFor="password">
+              <label
+                className="block mb-2 text-indigo-500"
+                htmlFor="new-password"
+              >
                 تکرار رمزعبور
               </label>
               <input
                 className="w-full p-2 mb-6 text-indigo-700 border-b-2 border-indigo-500 outline-none focus:bg-gray-300"
                 type="password"
-                {...register("rePassword")}
+                {...register("rePassword", { required: true })}
               />
             </div>
             <div>

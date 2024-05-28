@@ -4,7 +4,7 @@ import { useCustomeContext } from "../context/RealEstateContext";
 import { Switch } from "antd";
 import { MoonOutlined, SunOutlined } from "@ant-design/icons";
 function Navbar() {
-  const { theme, setTheme } = useCustomeContext();
+  const { theme, setTheme, token, infoLogin, setToken } = useCustomeContext();
   const handleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };
@@ -27,17 +27,26 @@ function Navbar() {
               ثبت آگهی
             </button>
           </Link>
-          <div className="group cursor-pointer h-8  mt-2 ">
-            ورود/ عضویت
-            <div className="absolute hidden hover:flex  group-hover:flex flex-col  shadow-2xl w-24 py-4  px-6 space-y-6 bg-slate-50 ">
-              <Link className="hover:text-blue-700" to={"/Login"}>
-                ورود
-              </Link>
-              <Link className="hover:text-blue-700" to={"/SignUp"}>
-                ثبت نام
-              </Link>
+          {token ? (
+            <div className="flex ">
+              <p className="mx-3">{infoLogin}</p>
+              <p className="mx-5 cursor-pointer" onClick={() => setToken("")}>
+                خروج
+              </p>
             </div>
-          </div>
+          ) : (
+            <div className="group cursor-pointer h-8  mt-2 ">
+              ورود/ عضویت
+              <div className="absolute hidden hover:flex  group-hover:flex flex-col  shadow-2xl w-24 py-4  px-6 space-y-6 bg-slate-50 ">
+                <Link className="hover:text-blue-700" to={"/Login"}>
+                  ورود
+                </Link>
+                <Link className="hover:text-blue-700" to={"/SignUp"}>
+                  ثبت نام
+                </Link>
+              </div>
+            </div>
+          )}
 
           <Switch
             className="mr-4 mt-[10px]"

@@ -9,7 +9,7 @@ import Navbar from "../components/Navbar";
 const { confirm } = Modal;
 
 function Ad() {
-  const { selectedAd, setSelectedAd } = useCustomeContext();
+  const { selectedAd, setSelectedAd,token } = useCustomeContext();
   const { adId } = useParams();
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -27,8 +27,11 @@ function Ad() {
       okType: "danger",
       cancelText: "خیر",
       onOk() {
-        fetch(`http://localhost:3000/item/${adId}`, {
+        fetch(`http://localhost:3000/664/item/${adId}`, {
           method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }).then(navigate("/"));
       },
     });

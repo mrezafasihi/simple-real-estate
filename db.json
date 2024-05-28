@@ -5,6 +5,19 @@
       "password": "$2a$10$aA/TwgQyQ4fN99xya5bLR.RYI84K1/Z3SuIvPqQbGdnDn5KiIFGym",
       "username": "myusername",
       "id": 1
+    },
+    {
+      "email": "test@gmail.com",
+      "password": "$2a$10$bBOqWiiBgJdw/.G.AEGLkOOrYrgN6BeW7jLHeyNHuyFPtD3.Wt0Na",
+      "username": "myusername",
+      "id": 2
+    },
+    {
+      "email": "mreza1.fasihi@gmail.com",
+      "password": "$2a$10$7kGMKMWrzZSH8jPkji.5DetvVV3fzqvPzHH9Re.OBeW1mX2HPdwli",
+      "username": "mrfh",
+      "rePassword": "1234",
+      "id": 3
     }
   ],
   "item": [
@@ -159,14 +172,6 @@
       "Features": "",
       "price": "",
       "id": 19
-    },
-    {
-      "title": "۷۱متر ۲خواب خطی روبه جنوب",
-      "tel": "",
-      "description": "",
-      "Features": "",
-      "price": "",
-      "id": 20
     },
     {
       "title": "۷۱متر ۲خواب خطی روبه جنوب",

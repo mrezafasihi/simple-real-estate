@@ -1,21 +1,57 @@
-
+import { useState } from "react";
 import Navbar from "../components/Navbar";
+import Notif from "../components/Notif";
+import { useCustomeContext } from "../context/RealEstateContext";
+import { json, useNavigate } from "react-router-dom";
 
 function Login() {
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const { setToken, setInfoLogin } = useCustomeContext();
+  const navigate = useNavigate();
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    fetch(" http://localhost:3000/Login", {
+      method: "POST",
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((response) => {
+        console.log(response);
+        if (response.status !== 200) {
+          console.log("first");
+        }
+        return response.json();
+      })
+      .then((json) => {
+        setToken(json.accessToken),
+          setInfoLogin(json.user.username),
+          navigate("/");
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <>
       <Navbar />
       <div className="flex h-[90vh] bg-indigo-700">
         <div className="w-full max-w-xs m-auto bg-indigo-100 rounded p-5">
-          <form>
+          <form onSubmit={handleLogin}>
             <div>
               <label className="block mb-2 text-indigo-500" htmlFor="username">
-                نام کاربری
+                ایمیل
               </label>
               <input
                 className="w-full p-2 mb-6 text-indigo-700 border-b-2 border-indigo-500 outline-none focus:bg-gray-300"
                 type="text"
                 name="username"
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div>
@@ -26,6 +62,7 @@ function Login() {
                 className="w-full p-2 mb-6 text-indigo-700 border-b-2 border-indigo-500 outline-none focus:bg-gray-300"
                 type="password"
                 name="password"
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             <div>
@@ -47,7 +84,7 @@ function Login() {
               className="text-indigo-700 hover:text-pink-700 text-sm float-right"
               href="/SignUp"
             >
-              ساخت اکانت{" "}
+              ثبت نام{" "}
             </a>
           </footer>
         </div>

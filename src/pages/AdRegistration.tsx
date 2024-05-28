@@ -4,17 +4,21 @@ import { ISignUp } from "../types/signUp.types";
 import Navbar from "../components/Navbar";
 import { Navigate, useNavigate } from "react-router-dom";
 import MapLeaflet from "../components/MapLeaflet";
+import { useCustomeContext } from "../context/RealEstateContext";
 
 function AdRegistration() {
+  const { token} = useCustomeContext();
+
   const { register, handleSubmit } = useForm<ISignUp>();
   const navigator = useNavigate();
   const onSubmit = (data: ISignUp) => {
     console.log(data);
-    fetch("http://localhost:3000/item", {
+    fetch("http://localhost:3000/664/item", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
         "Content-type": "application/json; charset=UTF-8",
+        Authorization: `Bearer ${token}`,
       },
     }).then(navigator("/"));
   };
