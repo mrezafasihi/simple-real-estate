@@ -5,6 +5,7 @@ export interface ISignUp {
   tel: number;
   description: string;
   Features: string;
+  postion:number[]
 }
 
 

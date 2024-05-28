@@ -15,7 +15,7 @@ function App() {
     else document.documentElement.classList.remove("dark");
   }, [theme]);
   return (
-    <main className="dark:bg-slate-900 dark:text-gray-100">
+    <main className="dark:bg-slate-900 dark:text-white">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />

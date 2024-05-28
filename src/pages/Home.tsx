@@ -3,7 +3,7 @@ import ShowList from "../components/ShowList";
 
 function Home() {
   return (
-    <main className="bg-[#f5f5f5] ">
+    <main className="bg-[#f5f5f5] dark:bg-gray-900 ">
       <Navbar />
       <ShowList />
     </main>

@@ -6,6 +6,7 @@ function MapLeaflet() {
   const defaultPostion: number[] = [51.505, -0.09];
 
   const [position, setPosition] = useState<L.LatLng | null>(null);
+  // hookForm={register("name")}
 
   const LocationMarker = () => {
     useMapEvents({
@@ -19,6 +20,7 @@ function MapLeaflet() {
 
   return (
     <div className="w-full h-96 ">
+      <input  type="text"  />
       <MapContainer
         center={defaultPostion}
         zoom={13}
@@ -29,8 +31,7 @@ function MapLeaflet() {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {/* <Marker position={defaultPostion}></Marker> */}
-        <LocationMarker />
+        <LocationMarker  />
       </MapContainer>
     </div>
   );

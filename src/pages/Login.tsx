@@ -40,8 +40,8 @@ function Login() {
   return (
     <>
       <Navbar />
-      <div className="flex h-[90vh] bg-indigo-700">
-        <div className="w-full max-w-xs m-auto bg-indigo-100 rounded p-5">
+      <div className="flex h-[90vh] bg-indigo-700 dark:bg-slate-800" >
+        <div className="w-full max-w-xs m-auto bg-indigo-100  rounded p-5">
           <form onSubmit={handleLogin}>
             <div>
               <label className="block mb-2 text-indigo-500" htmlFor="username">
@@ -67,7 +67,7 @@ function Login() {
             </div>
             <div>
               <input
-                className="w-full bg-indigo-700 hover:bg-blue-700 text-white font-bold py-2 px-4 mb-6 rounded"
+                className="w-full bg-indigo-700 dark:bg-blue-950 hover:bg-blue-700 text-white font-bold py-2 px-4 mb-6 rounded"
                 type="submit"
                 value={"تایید"}
               />

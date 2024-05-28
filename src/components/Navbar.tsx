@@ -37,7 +37,7 @@ function Navbar() {
           ) : (
             <div className="group cursor-pointer h-8  mt-2 ">
               ورود/ عضویت
-              <div className="absolute hidden hover:flex  group-hover:flex flex-col  shadow-2xl w-24 py-4  px-6 space-y-6 bg-slate-50 ">
+              <div className="absolute hidden hover:flex dark:bg-slate-700  group-hover:flex flex-col  shadow-2xl w-24 py-4  px-6 space-y-6 bg-slate-50 ">
                 <Link className="hover:text-blue-700" to={"/Login"}>
                   ورود
                 </Link>

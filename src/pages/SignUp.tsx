@@ -37,7 +37,7 @@ function SignUp() {
 
       <Navbar />
       {errors ? () => openNotification("top") : ""}
-      <div className="flex h-[90vh] bg-indigo-700">
+      <div className="flex h-[90vh] bg-indigo-700 dark:bg-blue-950">
         <div className="w-full max-w-xs m-auto bg-indigo-100 rounded p-5">
           <form onSubmit={handleSubmit(onSubmit)}>
             <div>

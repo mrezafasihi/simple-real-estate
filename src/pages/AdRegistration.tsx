@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { ISignUp } from "../types/signUp.types";
 import Navbar from "../components/Navbar";
@@ -7,12 +7,11 @@ import MapLeaflet from "../components/MapLeaflet";
 import { useCustomeContext } from "../context/RealEstateContext";
 
 function AdRegistration() {
-  const { token} = useCustomeContext();
-
-  const { register, handleSubmit } = useForm<ISignUp>();
+  const { token } = useCustomeContext();
+  const { register, handleSubmit,setValue } = useForm<ISignUp>();
   const navigator = useNavigate();
   const onSubmit = (data: ISignUp) => {
-    console.log(data);
+    setValue("postion",[1,2])
     fetch("http://localhost:3000/664/item", {
       method: "POST",
       body: JSON.stringify(data),
@@ -21,11 +20,15 @@ function AdRegistration() {
         Authorization: `Bearer ${token}`,
       },
     }).then(navigator("/"));
+    console.log(data)
+   
   };
+  
+
   return (
     <main className="">
       <Navbar />
-      <div className="flex flex-col max-w-[900px] justify-center max-h-max shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] mx-auto rounded-lg">
+      <div className="flex flex-col max-w-[900px] justify-center max-h-max shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] mx-auto rounded-lg dark:bg-blue-950">
         <h2 className="font-bold text-center  text-2xl">ثبت آگهی</h2>
         <form
           action=""
@@ -69,10 +72,10 @@ function AdRegistration() {
             <input
               type="text"
               {...register("price")}
-              className="bg-gray-100 h-8"
+              className="bg-gray-100  h-8"
             />
           </div>
-          <MapLeaflet />
+          <MapLeaflet  />
 
           <input
             type="submit"
