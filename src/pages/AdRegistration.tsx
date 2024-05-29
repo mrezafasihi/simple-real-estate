@@ -7,11 +7,11 @@ import MapLeaflet from "../components/MapLeaflet";
 import { useCustomeContext } from "../context/RealEstateContext";
 
 function AdRegistration() {
-  const { token } = useCustomeContext();
-  const { register, handleSubmit,setValue } = useForm<ISignUp>();
+  const { register, handleSubmit, setValue } = useForm<ISignUp>();
   const navigator = useNavigate();
   const onSubmit = (data: ISignUp) => {
-    setValue("postion",[1,2])
+    setValue("postion", [1, 2]);
+    const token = localStorage.getItem("token");
     fetch("http://localhost:3000/664/item", {
       method: "POST",
       body: JSON.stringify(data),
@@ -20,10 +20,8 @@ function AdRegistration() {
         Authorization: `Bearer ${token}`,
       },
     }).then(navigator("/"));
-    console.log(data)
-   
+    console.log(data);
   };
-  
 
   return (
     <main className="">
@@ -75,7 +73,7 @@ function AdRegistration() {
               className="bg-gray-100  h-8"
             />
           </div>
-          <MapLeaflet  />
+          <MapLeaflet />
 
           <input
             type="submit"

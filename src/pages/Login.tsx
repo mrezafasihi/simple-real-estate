@@ -1,13 +1,11 @@
 import { useState } from "react";
 import Navbar from "../components/Navbar";
 import Notif from "../components/Notif";
-import { useCustomeContext } from "../context/RealEstateContext";
-import { json, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const { setToken, setInfoLogin } = useCustomeContext();
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
@@ -30,9 +28,10 @@ function Login() {
         return response.json();
       })
       .then((json) => {
-        setToken(json.accessToken),
-          setInfoLogin(json.user.username),
-          navigate("/");
+        localStorage.setItem("token", json.accessToken),
+          localStorage.setItem("username", json.user.username);
+          console.log(json)
+        navigate("/");
       })
       .catch((err) => console.log(err));
   };
@@ -40,7 +39,7 @@ function Login() {
   return (
     <>
       <Navbar />
-      <div className="flex h-[90vh] bg-indigo-700 dark:bg-slate-800" >
+      <div className="flex h-[90vh] bg-indigo-700 dark:bg-slate-800">
         <div className="w-full max-w-xs m-auto bg-indigo-100  rounded p-5">
           <form onSubmit={handleLogin}>
             <div>

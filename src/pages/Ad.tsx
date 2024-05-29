@@ -9,7 +9,7 @@ import Navbar from "../components/Navbar";
 const { confirm } = Modal;
 
 function Ad() {
-  const { selectedAd, setSelectedAd,token } = useCustomeContext();
+  const { selectedAd, setSelectedAd } = useCustomeContext();
   const { adId } = useParams();
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -20,6 +20,7 @@ function Ad() {
   }, []);
 
   const showDeleteConfirm = () => {
+    const token=localStorage.getItem("token")
     confirm({
       icon: <WarningOutlined />,
       title: "آیا مطمئن هستید میخواهید آگهی را حذف کنید؟",

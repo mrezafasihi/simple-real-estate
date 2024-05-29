@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useCustomeContext } from "../context/RealEstateContext";
 import { Switch } from "antd";
 import { MoonOutlined, SunOutlined } from "@ant-design/icons";
 function Navbar() {
-  const { theme, setTheme, token, infoLogin, setToken } = useCustomeContext();
+  const { theme, setTheme } = useCustomeContext();
+  const [token, setToken] = useState<string | null>("");
+  const [username, setUsername] = useState<string | null>("");
+  useEffect(() => {
+    setToken(localStorage.getItem("token"));
+    setUsername(localStorage.getItem("username"));
+  }, [token]);
   const handleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };
+  console.log(token);
   return (
     <section className=" max-w-screen-xl  mx-auto py-2 ">
       <div className="flex justify-between items-center ">
@@ -29,8 +36,13 @@ function Navbar() {
           </Link>
           {token ? (
             <div className="flex ">
-              <p className="mx-3">{infoLogin}</p>
-              <p className="mx-5 cursor-pointer" onClick={() => setToken("")}>
+              <p className="mx-3">{username}</p>
+              <p
+                className="mx-5 cursor-pointer"
+                onClick={() => {
+                  localStorage.removeItem("token"), setToken("");
+                }}
+              >
                 خروج
               </p>
             </div>

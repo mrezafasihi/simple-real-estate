@@ -7,6 +7,7 @@ import { useCustomeContext } from "./context/RealEstateContext";
 import AdRegistration from "./pages/AdRegistration";
 import Ad from "./pages/Ad";
 import { useEffect } from "react";
+import ProtectedRoute from "./utils/ProtectedRoute";
 
 function App() {
   const { theme } = useCustomeContext();
@@ -21,7 +22,15 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/SignUp" element={<SignUp />} />
-          <Route path="/AdRegistration" element={<AdRegistration />} />
+          <Route
+            path="/AdRegistration"
+            element={
+              <ProtectedRoute>
+                <AdRegistration />
+              </ProtectedRoute>
+            }
+          />
+
           <Route path="/ad/:adId" element={<Ad />} />
         </Routes>
       </BrowserRouter>
